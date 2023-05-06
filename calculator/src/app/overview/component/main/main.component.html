@@ -1,4 +1,8 @@
 <main id="main">
+    <ul class="ul-links">
+        <li><a href="#">Diagramm</a></li>
+        <li><a href="#">Balance sheet overview</a></li>
+    </ul>
     <div class="container border rounded-3 p-3 bg-light">
         <form [formGroup]="form">
             <div class="row mb-3 sm">
@@ -6,8 +10,11 @@
                     <input type="text" class="form-control" placeholder="e.g. B Shopping" name="description" formControlName="description">
                 </div>
                 <div class="col">
-                    <button class="btn btn-success mx-2" (click)="taking()">Taking</button>
-                    <button class="btn btn-danger" (click)="output()">Output</button>
+                    <input type="checkbox" class="mx-2" name="taking" formControlName="taking">
+                    <label class="form-label text-success">Taking</label>&nbsp;
+                    <input type="checkbox"  name="output" formControlName="output">&nbsp;
+                    <label class="form-label  text-danger">Output</label>
+
                 </div>
             </div>
     
@@ -26,5 +33,22 @@
                 </div>
             </div>
         </form>
+    </div>
+
+    <div class="dataBoxes">
+        <ul class="bg-light" *ngFor="let data of datas; let index">
+            <li >
+                Title: {{data.description}}&nbsp;&nbsp; |
+                Date: {{data.date |date: 'dd.MM.yyyy'}}&nbsp;&nbsp; |
+                Amount: {{data.amount}} €
+            </li>
+
+            <li>
+                <button class="btn btn-warning mx-2" (click)="editFromDataList(index)">Edit</button>
+                <button class="btn btn-danger" (click)="deleteLists(index)">Delet</button>
+                <button class="btn btn-success mx-2" (click)="putEdit(this.form.value,index)">Save Changes</button>
+            </li>
+        </ul>
+        
     </div>
 </main>

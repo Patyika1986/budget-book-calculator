@@ -1,19 +1,12 @@
 {
-  "posts": [
+  "dataList": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "description": "Shopping",
+      "amount": 149,
+      "date": "2023-05-06",
+      "taking": false,
+      "output": true
     }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
