@@ -4,6 +4,8 @@ import { OverviewComponent } from './component/overview/overview.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './component/header/header.component';
 import { MainComponent } from './component/main/main.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', component: OverviewComponent},
@@ -18,12 +20,17 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     RouterModule,
     HeaderComponent,
-    MainComponent
+    MainComponent,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class OverviewModule { }

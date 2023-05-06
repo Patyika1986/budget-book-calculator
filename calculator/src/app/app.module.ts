@@ -4,8 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OverviewComponent } from './overview/component/overview/overview.component';
-import { RouterModule } from '@angular/router';
 import { OverviewModule } from "./overview/overview.module";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,10 @@ import { OverviewModule } from "./overview/overview.module";
     imports: [
         BrowserModule,
         AppRoutingModule,
-        OverviewModule
+        OverviewModule,
+        FormsModule,
+        HttpClientModule,
+        ReactiveFormsModule
     ]
 })
 export class AppModule { }

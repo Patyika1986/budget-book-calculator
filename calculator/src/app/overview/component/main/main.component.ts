@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private formbuilder: FormBuilder) { }
+
+  form = this.formbuilder.group({
+    description: ['',Validators.required],
+    amount: ['',Validators.required],
+    date: ['',Validators.required],
+  })
 
   ngOnInit(): void {
+  }
+
+  add(value:any){
+
+  }
+
+  taking(){
+
+  }
+
+  output(){
+
   }
 
 }

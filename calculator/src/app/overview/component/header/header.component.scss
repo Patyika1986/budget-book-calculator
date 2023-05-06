@@ -1,6 +1,16 @@
 #header {
     background-color: var(--background-color);
     padding: var(--padding-l);
-    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     color: white;
+
+    select {
+        padding-left: var(--padding-l);
+        padding-right: var(--padding-l);
+        padding: var(--padding-sm);
+        border-radius: var(--padding-xsm);
+        background-color: skyblue;
+    }
 }
