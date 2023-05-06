@@ -23,3 +23,13 @@ and for javaScript like this
 "scripts": [
     "node_modules/bootstrap/dist/js/bootstrap.min.js"
 ]
+
+8. add project structur ( folders )
+
+9. generate a modul overview | ng g m overview
+
+10. generate a component | ng g c overview/component/overview
+
+11. add a redirected deafult route
+
+12. modules connected
