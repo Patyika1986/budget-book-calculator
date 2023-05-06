@@ -10,3 +10,16 @@ This is a Budget Book Calculator with CRUD Methods
 4. npm run json
 
 5. ng serve --open
+
+6. npm i bootstrap 
+
+7. add src in angular.json for bootstrap css and javaScript like this  
+"styles": [
+    "src/styles.scss",
+    "node_modules/bootstrap/dist/css/bootstrap.min.css"
+],
+
+and for javaScript like this
+"scripts": [
+    "node_modules/bootstrap/dist/js/bootstrap.min.js"
+]
