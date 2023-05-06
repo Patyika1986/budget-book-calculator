@@ -33,3 +33,7 @@ and for javaScript like this
 11. add a redirected deafult route
 
 12. modules connected
+
+13. add some general style
+
+14. add global color
