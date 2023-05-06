@@ -7,6 +7,37 @@
     box-sizing: border-box;
 }
 
+:root {
+    // color
+    --color-orange: orangeRed;
+
+    // border
+    --border: 1px solid gray;
+
+    // margin
+    --margin-xsm:   0.25rem;
+    --margin-sm:    0.5rem;
+    --margin-s:     1rem;
+    --margin-m:     1.25rem;
+    --margin-l:     1.5rem;
+    --margin-xl:    1.75rem;
+    --margin-xxl:   2rem;
+
+    // padding
+    --padding-xsm:   0.25rem;
+    --padding-sm:    0.5rem;
+    --padding-s:     1rem;
+    --padding-m:     1.25rem;
+    --padding-l:     1.5rem;
+    --padding-xl:    1.75rem;
+    --padding-xxl:   2rem;
+
+    // box rounded
+    --round-s: .3rem;
+    --round-m: .4rem;
+    --round-l: .5rem; 
+}
+
 ul {
     margin: 0;
     padding: 0;
