@@ -1,0 +1,17 @@
+#main {
+    width: 100vw;
+    margin-top: var(--margin-xl);
+}
+
+.row {
+    @media(max-width: 600px){
+        flex-direction: column;
+    }
+}
+
+.btn {
+    @media(max-width: 600px){
+        margin-top: var(--margin-sm);
+        max-width: 220px;
+    }
+}

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { OverviewComponent } from './component/overview/overview.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './component/header/header.component';
+import { MainComponent } from './component/main/main.component';
 
 const routes: Routes = [
   { path: '', component: OverviewComponent},
@@ -12,7 +13,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    MainComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ const routes: Routes = [
   ],
   exports: [
     RouterModule,
-    HeaderComponent
+    HeaderComponent,
+    MainComponent
   ]
 })
 export class OverviewModule { }
