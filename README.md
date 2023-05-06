@@ -37,3 +37,7 @@ and for javaScript like this
 13. add some general style
 
 14. add global color
+
+15. add header component
+
+16. som style for header
