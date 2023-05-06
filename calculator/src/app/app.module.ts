@@ -5,18 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OverviewComponent } from './overview/component/overview/overview.component';
 import { RouterModule } from '@angular/router';
+import { OverviewModule } from "./overview/overview.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    OverviewComponent
-
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        OverviewComponent
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        OverviewModule
+    ]
 })
 export class AppModule { }
