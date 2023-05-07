@@ -27,6 +27,7 @@ export class BalanceOverviewComponent implements OnInit {
     this.createCokieDiagram();
     const takings = this.getTaking();
     const outputs = this.getOutput();
+    
   }
 
   backToMain(){
@@ -49,23 +50,14 @@ export class BalanceOverviewComponent implements OnInit {
       .pipe(takeUntil(this.subscribtion$))
       .subscribe((list) => {
         this.dataList = list;
-
-/**
- *   this.allTakings = [];
-        const val = this.dataList.find(x => x.taking === true);
-        this.allTakings.push(Number(val?.amount));
-        for(const list of this.allTakings){
-          if(!isNaN(list)){
-            this.allTakings.push(list);
-            console.log(this.allTakings);
-          }else{
-            this.allTakings = [];
-          }
-          
-        }
-
- */
     });
+    const taking = this.dataList.filter(y => y.taking === true);
+    for(const amount of taking){
+      this.allTakings.push(Number(amount.amount))
+      this.allTakings.map((list) => this.takings += list)      
+    }    
+    
+    
   }
 
   getOutput(){
