@@ -33,10 +33,10 @@ export class BalanceOverviewComponent implements OnInit {
 
    ngOnInit(): void {
     this.getDatas();
-    this.createCokieDiagram();
     this.getTaking();
     this.getOutput();
     this.getTotal();
+    this.createCokieDiagram();
   }
 
   backToMain(){
@@ -100,18 +100,18 @@ export class BalanceOverviewComponent implements OnInit {
     let myChart = new Chart("pieDiagram", {
       type: 'doughnut',
       data: {
-        labels: ['Red', 'Green', 'Orange'],
+        labels: ['Einnahmen', 'Ausgaben', 'Gesamt'],
         datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3],
+          label: 'Aus und Einnahmen',
+          data: [this.takings, this.outputs, this.total],
           backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
             'rgba(75, 192, 192, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
             'rgba(255, 159, 64, 0.2)'
           ],
           borderColor: [
-            'rgba(255, 99, 132, 1)',
             'rgba(75, 192, 192, 1)',
+            'rgba(255, 99, 132, 1)',
             'rgba(255, 159, 64, 1)'
           ],
           borderWidth: 1
@@ -120,11 +120,14 @@ export class BalanceOverviewComponent implements OnInit {
       options: {
         scales: {
           y: {
+            min:0,
+            max:100,
             beginAtZero: true
           }
         }
       }
     });
+    myChart.reset()
   }
 
   ngOnDestroy(): void {

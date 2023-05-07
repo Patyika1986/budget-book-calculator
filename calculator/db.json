@@ -47,6 +47,22 @@
       "date": "2023-05-02",
       "taking": false,
       "output": true
+    },
+    {
+      "id": 7,
+      "description": "Möbel",
+      "amount": 1345,
+      "date": "2023-05-01",
+      "taking": false,
+      "output": true
+    },
+    {
+      "id": 8,
+      "description": "Gutschein",
+      "amount": 56.5,
+      "date": "2023-05-03",
+      "taking": true,
+      "output": false
     }
   ]
 }
