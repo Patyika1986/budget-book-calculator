@@ -41,3 +41,7 @@ and for javaScript like this
 15. add header component
 
 16. som style for header
+
+17. npm i @ngx-translate/core --save
+
+18. npm i @ngx-translate/http-loader --save
