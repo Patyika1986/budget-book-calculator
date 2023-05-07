@@ -15,11 +15,17 @@ export class BalanceOverviewComponent implements OnInit {
 
   subscribtion$ = new Subject();
 
+  /**
+   * 
+   */
   allTakings:number[] = [];
   takings = 0;
 
   allOutputs:number[] = [];
   outputs = 0;
+
+  allTotal:number[] = [];
+  total = 0;
 
 
   dataList: DataListModel[] = [];
@@ -28,9 +34,9 @@ export class BalanceOverviewComponent implements OnInit {
    ngOnInit(): void {
     this.getDatas();
     this.createCokieDiagram();
-    const takings = this.getTaking();
-    const outputs = this.getOutput();
-    
+    this.getTaking();
+    this.getOutput();
+    this.getTotal();
   }
 
   backToMain(){
@@ -57,12 +63,8 @@ export class BalanceOverviewComponent implements OnInit {
     const taking = this.dataList.filter(y => y.taking === true);
     for(const amount of taking){
       this.allTakings.push(Number(amount.amount))
-      console.log(this.allTakings);
-      
     }    
     this.allTakings.map((list) => this.takings += list)
-    
-    
   }
 
   getOutput(){
@@ -74,37 +76,42 @@ export class BalanceOverviewComponent implements OnInit {
       });
       const output = this.dataList.filter(y => y.output === true);
       for(const amount of output){
-        this.allOutputs.push(Number(amount.amount))
-        
-        
-        console.log(this.allOutputs);
+        this.allOutputs.push(Number(amount.amount));
       } 
       this.allOutputs.map((list) => this.outputs += list)      
   }
 
+  getTotal(){
+    this.dataListFacadeService.loadAllDataList();
+    this.dataListFacadeService.datas$
+      .pipe(takeUntil(this.subscribtion$))
+      .subscribe((list) => {
+          this.dataList = list;      
+      });
+      const total = this.dataList.filter(y => y.amount);
+      for(const amount of total){
+        this.allTotal.push(Number(amount.amount));
+      } 
+      this.allTotal.map((list) => this.total += list)      
+  }
+
   createCokieDiagram(){
     Chart.register(...registerables);
-  let myChart = new Chart("pieDiagram", {
+    let myChart = new Chart("pieDiagram", {
       type: 'doughnut',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Red', 'Green', 'Orange'],
         datasets: [{
           label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
+          data: [12, 19, 3],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
             'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
             'rgba(255, 159, 64, 0.2)'
           ],
           borderColor: [
             'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
             'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
             'rgba(255, 159, 64, 1)'
           ],
           borderWidth: 1
@@ -119,7 +126,6 @@ export class BalanceOverviewComponent implements OnInit {
       }
     });
   }
-
 
   ngOnDestroy(): void {
     this.subscribtion$.next(false);
