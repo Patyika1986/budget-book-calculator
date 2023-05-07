@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { DataListFacadeService } from 'src/app/facade/data-list-facade.service';
 import { DataListModel } from 'src/app/interface/dataListModel';
+import { TranslateService } from '@ngx-translate/core';
+import { TransService } from 'src/app/service/trans.service';
 
 @Component({
   selector: 'app-main',
@@ -12,8 +14,16 @@ import { DataListModel } from 'src/app/interface/dataListModel';
 export class MainComponent implements OnInit, OnDestroy {
   constructor(
     private formbuilder: FormBuilder,
-    private dataListFacadeService: DataListFacadeService
-  ) {}
+    private dataListFacadeService: DataListFacadeService,
+    public trans: TransService,
+    public translate: TranslateService
+  ) {
+    translate.addLangs(['en', 'de']);
+  }
+
+  switchLang(language: string) {
+    const lang = this.trans.switchLang(language);
+  }
 
   form = this.formbuilder.group({
     id: [null, Validators.required],

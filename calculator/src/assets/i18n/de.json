@@ -1,0 +1,13 @@
+{
+  "title":"Titel",
+  "taking": "Einnahme",
+  "output": "Ausgabe",
+  "eGBShopingPlaceholder": "z.B Einkaufen",
+  "pleaseEnteraDescription": "Bitte geben Sie eine Beschreibung ein",
+  "pleaseEnterAmount": "Bitte geben Sie eine Beschreibung ein",
+  "eGAmount": "z.B. 10.45 €",
+  "buttonAdd": "Hinzufügen",
+  "balanceSheetOverview": "Bilanzübersicht",
+  "amount": "Betrag",
+  "date": "Datum"
+}

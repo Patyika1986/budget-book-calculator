@@ -1,81 +1,133 @@
 <main id="main">
-    <ul class="ul-links">
-        <li><a href="#">Balance sheet overview</a></li>
+  <ul class="ul-links">
+    <li>
+      <a href="#">{{ "balanceSheetOverview" | translate }}</a>
+    </li>
+    <select id="select-lang" #selectedLang (change)="switchLang(selectedLang.value)">
+      <option
+        *ngFor="let language of translate.getLangs()"
+        [selected]="language === translate.currentLang"
+      >
+        {{ language }}
+      </option>
+    </select>
+  </ul>
+
+  <div class="container border rounded-3 p-3 bg-light">
+    <form [formGroup]="form">
+      <div class="row mb-3 sm">
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="{{ 'eGBShopingPlaceholder' | translate }}"
+            name="description"
+            formControlName="description"
+          />
+        </div>
+        <div class="col">
+          *<input
+            type="checkbox"
+            class="mx-2"
+            name="taking"
+            formControlName="taking"
+          />
+          <label class="form-label text-success">{{
+            "taking" | translate
+          }}</label
+          >&nbsp;
+          <input type="checkbox" name="output" formControlName="output" />&nbsp;
+          <label class="form-label text-danger">{{
+            "output" | translate
+          }}</label>
+        </div>
+      </div>
+
+      <div class="row mt-1">
+        <div class="col">
+          <div
+            class="alert alert-danger"
+            *ngIf="form.get('description')?.hasError('required')"
+          >
+            {{ "pleaseEnteraDescription" | translate }}
+          </div>
+        </div>
+      </div>
+
+      <div class="row sm">
+        <div class="col">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="{{ 'eGAmount' | translate }}"
+            name="amount"
+            formControlName="amount"
+          />
+        </div>
+        <div class="col">
+          <input
+            type="date"
+            class="form-control"
+            placeholder="Date"
+            name="date"
+            formControlName="date"
+          />
+        </div>
+      </div>
+
+      <div class="row mt-1">
+        <div class="col">
+          <div
+            class="alert alert-danger"
+            *ngIf="form.get('amount')?.hasError('required')"
+          >
+            {{ "pleaseEnterAmount" | translate }}
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button
+            class="btn btn-success mt-2 px-5"
+            (click)="add(this.form.value)"
+          >
+            {{ "buttonAdd" | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="dataBoxes">
+    <ul class="bg-light" *ngFor="let data of datas; let index">
+      <li>
+        {{ "title" | translate }}: {{ data.description }}&nbsp;&nbsp; |
+        {{ "date" | translate }}:
+        {{ data.date | date : "dd.MM.yyyy" }}&nbsp;&nbsp; |
+        {{ "amount" | translate }}: {{ data.amount }} €
+      </li>
+
+      <li>
+        <span
+          class="material-symbols-outlined edit"
+          (click)="editFromDataList(index)"
+        >
+          edit
+        </span>
+        <span
+          class="material-symbols-outlined delete"
+          (click)="deleteLists(index)"
+        >
+          delete
+        </span>
+        <span
+          class="material-symbols-outlined put"
+          (click)="putEdit(this.form.value, index)"
+        >
+          published_with_changes
+        </span>
+      </li>
     </ul>
-    <div class="container border rounded-3 p-3 bg-light">
-        <form [formGroup]="form">
-            <div class="row mb-3 sm">
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="e.g. B Shopping" name="description" formControlName="description">
-                </div>
-                <div class="col">
-                    *<input type="checkbox" class="mx-2" name="taking" formControlName="taking">
-                    <label class="form-label text-success">Taking</label>&nbsp;
-                    <input type="checkbox"  name="output" formControlName="output">&nbsp;
-                    <label class="form-label  text-danger">Output</label>
-
-                </div>
-            </div>
-
-            <div class="row mt-1">
-                <div class="col">
-                  <div
-                    class="alert alert-danger"
-                    *ngIf="form.get('description')?.hasError('required')"
-                  >
-                  Please enter a description
-                  </div>
-                </div>
-              </div>
-    
-            <div class="row sm">
-                <div class="col">
-                    <input type="number" class="form-control" placeholder="e.g. 10.49 $" name="amount" formControlName="amount">
-                </div>
-                <div class="col">
-                   <input type="date" class="form-control" placeholder="Date" name="date" formControlName="date">
-                </div>
-            </div>
-
-            <div class="row mt-1">
-                <div class="col">
-                  <div
-                    class="alert alert-danger"
-                    *ngIf="form.get('amount')?.hasError('required')"
-                  >
-                  Please enter an amount
-                  </div>
-                </div>
-              </div>
-   
-            <div class="row">
-                <div class="col">
-                    <button class="btn btn-success mt-2 px-5" (click)="add(this.form.value)">Add</button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <div class="dataBoxes">
-        <ul class="bg-light" *ngFor="let data of datas; let index">
-            <li >
-                Title: {{data.description}}&nbsp;&nbsp; |
-                Date: {{data.date |date: 'dd.MM.yyyy'}}&nbsp;&nbsp; |
-                Amount: {{data.amount}} €
-            </li>
-
-            <li>
-                <span class="material-symbols-outlined edit" (click)="editFromDataList(index)">
-                    edit
-                </span>
-                <span class="material-symbols-outlined delete" (click)="deleteLists(index)">
-                    delete
-                </span>
-                <span class="material-symbols-outlined put" (click)="putEdit(this.form.value,index)">
-                    published_with_changes
-                </span>
-            </li>
-        </ul>
-        
-    </div>
+  </div>
 </main>
