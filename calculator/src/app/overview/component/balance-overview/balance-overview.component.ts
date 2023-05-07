@@ -15,11 +15,9 @@ export class BalanceOverviewComponent implements OnInit {
 
   subscribtion$ = new Subject();
 
-  allTakings:DataListModel[] = [];
+  allTakings:number[] = [];
+  takings = 0;
 
-  allOutputs:number[] = [];
-
-  takings: number = 0;
 
   dataList: DataListModel[] = [];
 
@@ -51,15 +49,23 @@ export class BalanceOverviewComponent implements OnInit {
       .pipe(takeUntil(this.subscribtion$))
       .subscribe((list) => {
         this.dataList = list;
-        const data = this.dataList.find(x => x.taking === true);
-        console.log(data);
-      });
 
-      
-      
-        
-        
-      
+/**
+ *   this.allTakings = [];
+        const val = this.dataList.find(x => x.taking === true);
+        this.allTakings.push(Number(val?.amount));
+        for(const list of this.allTakings){
+          if(!isNaN(list)){
+            this.allTakings.push(list);
+            console.log(this.allTakings);
+          }else{
+            this.allTakings = [];
+          }
+          
+        }
+
+ */
+    });
   }
 
   getOutput(){
