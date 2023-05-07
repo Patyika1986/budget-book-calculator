@@ -14,14 +14,16 @@ import {
 } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { BalanceOverviewComponent } from './component/balance-overview/balance-overview.component';
 
 const routes: Routes = [
   { path: '', component: OverviewComponent },
   { path: '', component: HeaderComponent },
+  { path: 'balance-overview', component: BalanceOverviewComponent}
 ];
 
 @NgModule({
-  declarations: [HeaderComponent, MainComponent],
+  declarations: [HeaderComponent, MainComponent, BalanceOverviewComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

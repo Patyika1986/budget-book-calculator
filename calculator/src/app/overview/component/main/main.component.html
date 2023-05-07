@@ -1,7 +1,7 @@
 <main id="main">
   <ul class="ul-links">
     <li>
-      <a href="#">{{ "balanceSheetOverview" | translate }}</a>
+      <a routerLink="/balance-overview">{{ "balanceSheetOverview" | translate }}</a>
     </li>
     <select id="select-lang" #selectedLang (change)="switchLang(selectedLang.value)">
       <option
