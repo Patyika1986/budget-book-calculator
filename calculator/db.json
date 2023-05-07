@@ -2,35 +2,51 @@
   "dataList": [
     {
       "id": 1,
-      "description": "Brot",
-      "amount": 1,
+      "description": "Gehalt ",
+      "amount": 3500,
       "date": "2023-05-01",
-      "taking": false,
-      "output": true
+      "taking": true,
+      "output": false
     },
     {
       "id": 2,
-      "description": "Kässe",
-      "amount": 2,
+      "description": "Kindergeld",
+      "amount": 500,
       "date": "2023-05-01",
+      "taking": true,
+      "output": false
+    },
+    {
+      "id": 3,
+      "description": "Shopping",
+      "amount": 100,
+      "date": "2023-05-02",
       "taking": false,
       "output": true
     },
     {
-      "id": 3,
-      "description": "Erste einnahme",
-      "amount": 2,
-      "date": "2023-05-01",
-      "taking": true,
-      "output": false
+      "id": 4,
+      "description": "Einkaufen",
+      "amount": 200,
+      "date": "2023-05-02",
+      "taking": false,
+      "output": true
     },
     {
-      "id": 4,
-      "description": "Zweite einnahme",
-      "amount": 2,
-      "date": "2023-05-01",
-      "taking": true,
-      "output": false
+      "id": 5,
+      "description": "Brot",
+      "amount": 1.5,
+      "date": "2023-05-03",
+      "taking": false,
+      "output": true
+    },
+    {
+      "id": 6,
+      "description": "Kässe",
+      "amount": 10,
+      "date": "2023-05-02",
+      "taking": false,
+      "output": true
     }
   ]
 }

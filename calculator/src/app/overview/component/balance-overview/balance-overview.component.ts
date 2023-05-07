@@ -18,6 +18,9 @@ export class BalanceOverviewComponent implements OnInit {
   allTakings:number[] = [];
   takings = 0;
 
+  allOutputs:number[] = [];
+  outputs = 0;
+
 
   dataList: DataListModel[] = [];
 
@@ -54,8 +57,10 @@ export class BalanceOverviewComponent implements OnInit {
     const taking = this.dataList.filter(y => y.taking === true);
     for(const amount of taking){
       this.allTakings.push(Number(amount.amount))
-      this.allTakings.map((list) => this.takings += list)      
+      console.log(this.allTakings);
+      
     }    
+    this.allTakings.map((list) => this.takings += list)
     
     
   }
@@ -65,8 +70,16 @@ export class BalanceOverviewComponent implements OnInit {
     this.dataListFacadeService.datas$
       .pipe(takeUntil(this.subscribtion$))
       .subscribe((list) => {
-          const output = list.find(x => x.output === true);         
+          this.dataList = list;      
       });
+      const output = this.dataList.filter(y => y.output === true);
+      for(const amount of output){
+        this.allOutputs.push(Number(amount.amount))
+        
+        
+        console.log(this.allOutputs);
+      } 
+      this.allOutputs.map((list) => this.outputs += list)      
   }
 
   createCokieDiagram(){
