@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Chart, registerables } from 'chart.js';
+import { Subject, takeUntil } from 'rxjs';
+import { DataListFacadeService } from '../../../facade/data-list-facade.service';
+import { DataListModel } from 'src/app/interface/dataListModel';
 @Component({
   selector: 'app-balance-overview',
   templateUrl: './balance-overview.component.html',
@@ -8,14 +11,64 @@ import { Chart, registerables } from 'chart.js';
 })
 export class BalanceOverviewComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dataListFacadeService: DataListFacadeService) { }
 
-  ngOnInit(): void {
+  subscribtion$ = new Subject();
+
+  allTakings:DataListModel[] = [];
+
+  allOutputs:number[] = [];
+
+  takings: number = 0;
+
+  dataList: DataListModel[] = [];
+
+
+   ngOnInit(): void {
+    this.getDatas();
     this.createCokieDiagram();
+    const takings = this.getTaking();
+    const outputs = this.getOutput();
   }
 
   backToMain(){
     this.router.navigate(['overview']);
+  }
+
+  getDatas(){
+    this.dataListFacadeService.loadAllDataList();
+    this.dataListFacadeService.datas$
+      .pipe(takeUntil(this.subscribtion$))
+      .subscribe((list) => {
+          this.dataList = list;
+      });
+  }
+
+   getTaking(){
+    this.dataListFacadeService.loadAllDataList();
+    this.dataList = [];
+    this.dataListFacadeService.datas$
+      .pipe(takeUntil(this.subscribtion$))
+      .subscribe((list) => {
+        this.dataList = list;
+        const data = this.dataList.find(x => x.taking === true);
+        console.log(data);
+      });
+
+      
+      
+        
+        
+      
+  }
+
+  getOutput(){
+    this.dataListFacadeService.loadAllDataList();
+    this.dataListFacadeService.datas$
+      .pipe(takeUntil(this.subscribtion$))
+      .subscribe((list) => {
+          const output = list.find(x => x.output === true);         
+      });
   }
 
   createCokieDiagram(){
@@ -54,6 +107,12 @@ export class BalanceOverviewComponent implements OnInit {
         }
       }
     });
+  }
+
+
+  ngOnDestroy(): void {
+    this.subscribtion$.next(false);
+    this.subscribtion$.complete();
   }
 
 }

@@ -2,19 +2,35 @@
   "dataList": [
     {
       "id": 1,
-      "description": "Gehalt ",
-      "amount": 2550,
+      "description": "Brot",
+      "amount": 1,
+      "date": "2023-05-01",
+      "taking": false,
+      "output": true
+    },
+    {
+      "id": 2,
+      "description": "Kässe",
+      "amount": 2,
+      "date": "2023-05-01",
+      "taking": false,
+      "output": true
+    },
+    {
+      "id": 3,
+      "description": "Erste einnahme",
+      "amount": 2,
       "date": "2023-05-01",
       "taking": true,
       "output": false
     },
     {
-      "id": 2,
-      "description": "Einkaufen",
-      "amount": 8.45,
+      "id": 4,
+      "description": "Zweite einnahme",
+      "amount": 2,
       "date": "2023-05-01",
-      "taking": false,
-      "output": true
+      "taking": true,
+      "output": false
     }
   ]
 }
