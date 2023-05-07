@@ -55,4 +55,21 @@
         }
 
     }
+
+    .material-symbols-outlined {
+        margin-right: var(--margin-xl);
+        cursor: pointer;
+    }
+    .edit {
+        color: orange;
+        font-weight: 900;
+    }
+    .delete {
+        color: red;
+        font-weight: 400;
+    }
+    .put {
+        color: green;
+        font-weight: 400;
+    }
 }

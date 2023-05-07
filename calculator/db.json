@@ -2,9 +2,17 @@
   "dataList": [
     {
       "id": 1,
-      "description": "Shopping",
-      "amount": 149,
-      "date": "2023-05-06",
+      "description": "Gehalt ",
+      "amount": 2550,
+      "date": "2023-05-01",
+      "taking": true,
+      "output": false
+    },
+    {
+      "id": 2,
+      "description": "Einkaufen",
+      "amount": 8.45,
+      "date": "2023-05-01",
       "taking": false,
       "output": true
     }
