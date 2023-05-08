@@ -1,9 +1,9 @@
 <main id="main">
   <ul class="ul-links">
     <li>
-      <a routerLink="/balance-overview">{{ "balanceSheetOverview" | translate }}</a>
+      <a routerLink="/balance-overview" title="Navigate to Balance sheet overview">{{ "balanceSheetOverview" | translate }}</a>
     </li>
-    <select id="select-lang" #selectedLang (change)="switchLang(selectedLang.value)">
+    <select id="select-lang" #selectedLang (change)="switchLang(selectedLang.value)" title="Select your  Language">
       <option
         *ngFor="let language of translate.getLangs()"
         [selected]="language === translate.currentLang"
@@ -91,6 +91,7 @@
           <button
             class="btn btn-success mt-2 px-5"
             (click)="add(this.form.value)"
+            title="Add List"
           >
             {{ "buttonAdd" | translate }}
           </button>
@@ -112,18 +113,21 @@
         <span
           class="material-symbols-outlined edit"
           (click)="editFromDataList(index)"
+          title="Edit this list"
         >
           edit
         </span>
         <span
           class="material-symbols-outlined delete"
           (click)="deleteLists(index)"
+          title="Delete this list"
         >
           delete
         </span>
         <span
           class="material-symbols-outlined put"
           (click)="putEdit(this.form.value, index)"
+          title="Save changes"
         >
           published_with_changes
         </span>
