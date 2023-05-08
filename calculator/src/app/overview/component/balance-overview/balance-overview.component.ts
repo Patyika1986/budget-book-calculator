@@ -25,7 +25,7 @@ export class BalanceOverviewComponent implements OnInit {
   outputs = 0;
 
   allTotal:number[] = [];
-  total = 0;
+  bilanz = 0;
 
 
   dataList: DataListModel[] = [];
@@ -35,7 +35,7 @@ export class BalanceOverviewComponent implements OnInit {
     this.getDatas();
     this.getTaking();
     this.getOutput();
-    this.getTotal();
+    this.getBilanz();
     this.createCokieDiagram();
   }
 
@@ -81,18 +81,18 @@ export class BalanceOverviewComponent implements OnInit {
       this.allOutputs.map((list) => this.outputs += list)      
   }
 
-  getTotal(){
+  getBilanz(){
     this.dataListFacadeService.loadAllDataList();
     this.dataListFacadeService.datas$
       .pipe(takeUntil(this.subscribtion$))
       .subscribe((list) => {
           this.dataList = list;      
       });
-      const total = this.dataList.filter(y => y.amount);
-      for(const amount of total){
+      const bilanz = this.dataList.filter(y => y.amount);
+      for(const amount of bilanz){
         this.allTotal.push(Number(amount.amount));
       } 
-      this.allTotal.map((list) => this.total += list)      
+      this.allTotal.map((list) => this.bilanz += list - this.outputs)      
   }
 
   createCokieDiagram(){
@@ -100,10 +100,10 @@ export class BalanceOverviewComponent implements OnInit {
     let myChart = new Chart("pieDiagram", {
       type: 'doughnut',
       data: {
-        labels: ['Einnahmen', 'Ausgaben', 'Gesamt'],
+        labels: [],
         datasets: [{
           label: 'Aus und Einnahmen',
-          data: [this.takings, this.outputs, this.total],
+          data: [this.takings, this.outputs, this.bilanz],
           backgroundColor: [
             'rgba(75, 192, 192, 0.2)',
             'rgba(255, 99, 132, 0.2)',

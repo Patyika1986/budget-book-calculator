@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="container border rounded-3 p-2 bg-light">
+<div class="container border rounded-3 p-2 bg-light mt-5">
     <div class="row">
         <div class="col">
             <span class="material-symbols-outlined" (click)="backToMain()">
@@ -7,16 +7,16 @@
             </span>
         </div>
     </div>
-    <div class="row">
+    <div class="row break">
         <div class="col-5">
             <div class="card">
                 <div class="card-header">
-                    <h2>Bilanzübersicht</h2>
+                    <h2>{{'BalanceSheetOverview' | translate}}</h2>
                 </div>
                 <div class="card-body">
-                    <p>Einnahmen: {{takings}} €</p>
-                    <p>Ausgaben: - {{outputs}} €</p>
-                    <p>Gesamt: {{total}} €</p>
+                    <p>{{'revenue' | translate}}: {{takings}} €</p>
+                    <p>{{'expenditure' | translate}}: - {{outputs}} €</p>
+                    <p>{{'balanceSheet' | translate}}: {{bilanz}} €</p>
                 </div>
             </div>
         </div>

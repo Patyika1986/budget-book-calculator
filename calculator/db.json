@@ -2,65 +2,17 @@
   "dataList": [
     {
       "id": 1,
-      "description": "Gehalt ",
-      "amount": 3500,
-      "date": "2023-05-01",
-      "taking": true,
-      "output": false
+      "description": "Einkaufen",
+      "amount": 17.43,
+      "date": "2023-05-08",
+      "taking": false,
+      "output": true
     },
     {
       "id": 2,
-      "description": "Kindergeld",
-      "amount": 500,
+      "description": "Gehalt ",
+      "amount": 2550,
       "date": "2023-05-01",
-      "taking": true,
-      "output": false
-    },
-    {
-      "id": 3,
-      "description": "Shopping",
-      "amount": 100,
-      "date": "2023-05-02",
-      "taking": false,
-      "output": true
-    },
-    {
-      "id": 4,
-      "description": "Einkaufen",
-      "amount": 200,
-      "date": "2023-05-02",
-      "taking": false,
-      "output": true
-    },
-    {
-      "id": 5,
-      "description": "Brot",
-      "amount": 1.5,
-      "date": "2023-05-03",
-      "taking": false,
-      "output": true
-    },
-    {
-      "id": 6,
-      "description": "Kässe",
-      "amount": 10,
-      "date": "2023-05-02",
-      "taking": false,
-      "output": true
-    },
-    {
-      "id": 7,
-      "description": "Möbel",
-      "amount": 1345,
-      "date": "2023-05-01",
-      "taking": false,
-      "output": true
-    },
-    {
-      "id": 8,
-      "description": "Gutschein",
-      "amount": 56.5,
-      "date": "2023-05-03",
       "taking": true,
       "output": false
     }

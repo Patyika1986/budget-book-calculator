@@ -9,8 +9,10 @@
   "buttonAdd": "Add",
   "balanceSheetOverview": "Balance sheet overview",
   "amount": "Amount",
-  "date": "Date"
-
-
-
+  "date": "Date",
+  "HousekeepingCalculator": "Housekeeping calculator",
+  "revenue": "Revenue",
+  "expenditure": "Expenditure",
+  "balanceSheet": "Balance Sheet",
+  "BalanceSheetOverview": "Balance sheet overview"
 }
