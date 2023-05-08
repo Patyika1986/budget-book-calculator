@@ -9,28 +9,41 @@ import { DataListModel } from 'src/app/interface/dataListModel';
   templateUrl: './balance-overview.component.html',
   styleUrls: ['./balance-overview.component.scss']
 })
-export class BalanceOverviewComponent implements OnInit {
+export class BalanceOverviewComponent implements OnInit{
 
   constructor(private router: Router, private dataListFacadeService: DataListFacadeService) { }
 
   subscribtion$ = new Subject();
 
   /**
-   * 
+   * When taking true is then push the amount in 
+   * allOutputs number array
    */
   allTakings:number[] = [];
   takings = 0;
 
+  /**
+   * When outputs true is then push the amount in 
+   * allOutputs number array
+   */
   allOutputs:number[] = [];
   outputs = 0;
 
+  /**
+   * Bilanz from taking
+   * and ouptut
+   */
   allTotal:number[] = [];
   bilanz = 0;
 
-
+/**
+ * All data list
+ */
   dataList: DataListModel[] = [];
 
-
+  /**
+   * All Methods call on ngOnInit
+   */
    ngOnInit(): void {
     this.getDatas();
     this.getTaking();
@@ -39,10 +52,17 @@ export class BalanceOverviewComponent implements OnInit {
     this.createCokieDiagram();
   }
 
+  /**
+   * Navigate to Overview to default path
+   */
   backToMain(){
     this.router.navigate(['overview']);
   }
 
+  /**
+   * Get all datas
+   * and push in Array this.dataList
+   */
   getDatas(){
     this.dataListFacadeService.loadAllDataList();
     this.dataListFacadeService.datas$
@@ -52,6 +72,11 @@ export class BalanceOverviewComponent implements OnInit {
       });
   }
 
+  /**
+   * Get all list where taking true is
+   * and calculat the amount
+   * push they all in this.allTakings array
+   */
    getTaking(){
     this.dataListFacadeService.loadAllDataList();
     this.dataList = [];
@@ -67,6 +92,11 @@ export class BalanceOverviewComponent implements OnInit {
     this.allTakings.map((list) => this.takings += list)
   }
 
+    /**
+   * Get all list where output true is
+   * and calculat the amount
+   * push they all in this.allOutputs array
+   */
   getOutput(){
     this.dataListFacadeService.loadAllDataList();
     this.dataListFacadeService.datas$
@@ -81,6 +111,10 @@ export class BalanceOverviewComponent implements OnInit {
       this.allOutputs.map((list) => this.outputs += list)      
   }
 
+  /**
+   * Get Bilanz
+   * calculat the sum from taking 
+   */
   getBilanz(){
     this.dataListFacadeService.loadAllDataList();
     this.dataListFacadeService.datas$
@@ -95,6 +129,10 @@ export class BalanceOverviewComponent implements OnInit {
       this.allTotal.map((list) => this.bilanz += list - this.outputs)      
   }
 
+  /**
+   * Create a Cokie Diagramm
+   * This is from library Chart.js
+   */
   createCokieDiagram(){
     Chart.register(...registerables);
     let myChart = new Chart("pieDiagram", {
@@ -130,6 +168,9 @@ export class BalanceOverviewComponent implements OnInit {
     myChart.reset()
   }
 
+  /**
+   * Destroy all subscribe
+   */
   ngOnDestroy(): void {
     this.subscribtion$.next(false);
     this.subscribtion$.complete();

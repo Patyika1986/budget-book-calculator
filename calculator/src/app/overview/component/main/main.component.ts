@@ -21,10 +21,17 @@ export class MainComponent implements OnInit, OnDestroy {
     translate.addLangs(['en', 'de']);
   }
 
+  /**
+   * Switch to language from selected
+   * @param {string} language 
+   */
   switchLang(language: string) {
     const lang = this.trans.switchLang(language);
   }
 
+  /**
+   * Reactive forms 
+   */
   form = this.formbuilder.group({
     id: [null, Validators.required],
     description: ['', Validators.required],
@@ -34,17 +41,33 @@ export class MainComponent implements OnInit, OnDestroy {
     output: [false],
   });
 
+  /**
+   * All subjects
+   */
   subscribtion$ = new Subject();
 
+  /**
+   * All datas from db.json
+   */
   datas: DataListModel[] = [];
-  todayDate: Date = new Date();
 
+
+  /**
+   * index from data list element
+   */
   indexId: number = 0;
 
+  /**
+   * load the list
+   */
   ngOnInit(): void {
     this.loadList();
   }
 
+  /**
+   * subscribe and push the 
+   * value to the array this.datas
+   */
   loadList() {
     this.dataListFacadeService.loadAllDataList();
     this.dataListFacadeService.datas$
@@ -54,6 +77,10 @@ export class MainComponent implements OnInit, OnDestroy {
       });
   }
 
+  /**
+   * Add list to the this.datas array
+   * @param {object} value 
+   */
   add(value: any) {
     this.dataListFacadeService.addDataList(value);
     this.dataListFacadeService.addDataList$
@@ -62,6 +89,10 @@ export class MainComponent implements OnInit, OnDestroy {
     window.location.reload();
   }
 
+  /**
+   * Edit a list element
+   * @param {number} index 
+   */
   editFromDataList(index: any) {
     const filtred = this.datas.find((same) => same.id === index.id);
     this.form.controls.description.setValue(filtred!.description);
@@ -71,6 +102,11 @@ export class MainComponent implements OnInit, OnDestroy {
     this.indexId = index;
   }
 
+/**
+ * Update a list element
+ * @param {DataListModel} data 
+ * @param {number} index 
+ */
   putEdit(data: any, index: any) {
     this.dataListFacadeService.loadPutDataList(index.id, data);
     this.dataListFacadeService.putDataList$
@@ -78,6 +114,10 @@ export class MainComponent implements OnInit, OnDestroy {
       .subscribe((list) => {});
   }
 
+  /**
+   * Delete a list element 
+   * @param {number} id 
+   */
   deleteLists(id: any) {
     this.dataListFacadeService.deleteDataList(id.id);
     this.dataListFacadeService.deleteList$
@@ -86,6 +126,9 @@ export class MainComponent implements OnInit, OnDestroy {
     window.location.reload();
   }
 
+  /**
+   * Destroy all subjects
+   */
   ngOnDestroy(): void {
     this.subscribtion$.next(false);
     this.subscribtion$.complete();
